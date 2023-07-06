@@ -2,7 +2,8 @@ package com.test.palmhrdemo.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.test.newsline.models.FilterObject
+import com.test.palmhrdemo.models.FilterObject
+
 
 class SharedViewModel() : ViewModel() {
 

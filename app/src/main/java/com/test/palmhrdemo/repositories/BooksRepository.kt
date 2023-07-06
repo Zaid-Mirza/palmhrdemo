@@ -11,12 +11,13 @@ class BooksRepository {
 
 
     suspend fun getBooks(
-        section: String,
-        days: String,
+        q: String,
+        maxResults: String,
+        startIndex: String,
         listener: suspend (Resource<GeneralResponse>) -> Unit
     ) {
         withContext(Dispatchers.IO) {
-            val response = NetworkManager.getBooks(section, days)
+            val response = NetworkManager.getBooks(q, maxResults,startIndex)
             if (response?.isSuccessful == true) {
                 response.body()?.let {
                     listener(Resource.success(it))

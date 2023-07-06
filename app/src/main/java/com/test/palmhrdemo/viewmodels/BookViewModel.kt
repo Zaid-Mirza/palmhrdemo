@@ -9,22 +9,30 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
 class BookViewModel(private val repository: BooksRepository) : ViewModel() {
-    private val articlesLiveData = MutableLiveData<Resource<GeneralResponse>?>()
+    private val booksLiveData = MutableLiveData<Resource<GeneralResponse>?>()
 
-    fun getBooks(section: String, days: String): LiveData<Resource<GeneralResponse>?> {
+    fun getBooks(
+        q: String,
+        maxResults: String,
+        startIndex: String
+    ): LiveData<Resource<GeneralResponse>?> {
 
 
         val handler = CoroutineExceptionHandler { data, exception ->
             val ss = ""
-            articlesLiveData.postValue(Resource.error("", null, AppEnums.ErrorType.Service))
+            booksLiveData.postValue(Resource.error("", null, AppEnums.ErrorType.Service))
 
         }
         viewModelScope.launch(handler) {
-            repository.getBooks(section, days) {
-                articlesLiveData.postValue(it)
+            repository.getBooks(
+                q,
+                maxResults,
+                startIndex
+            ) {
+                booksLiveData.postValue(it)
             }
         }
-        return articlesLiveData
+        return booksLiveData
     }
 }
 

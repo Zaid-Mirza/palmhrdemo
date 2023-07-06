@@ -1,36 +1,34 @@
 package com.test.palmhrdemo.fragments
 
-
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import com.test.newsline.models.FilterObject
 import com.test.palmhrdemo.databinding.FragmentBooksBinding
+import com.test.palmhrdemo.models.FilterObject
 import com.test.palmhrdemo.models.Items
 import com.test.palmhrdemo.repositories.BooksRepository
+import com.test.palmhrdemo.utils.AppEnums
+import com.test.palmhrdemo.viewmodels.BookViewModel
 import com.test.palmhrdemo.viewmodels.BooksViewModelFactory
 import com.test.palmhrdemo.viewmodels.SharedViewModel
 
 
-const val PHONE_DETAIL = "phone_detail";
-
 class BooksFragment : Fragment() {
     private lateinit var binding: FragmentBooksBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var booksViewModel: BookViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModelFactory = BooksViewModelFactory(
-            repository = BooksRepository(
-            )
+            repository = BooksRepository()
         )
+        booksViewModel = ViewModelProvider(this, viewModelFactory)[BookViewModel::class.java]
+
     }
 
     override fun onCreateView(
@@ -44,7 +42,24 @@ class BooksFragment : Fragment() {
     }
 
     private fun initViews() {
+        booksViewModel?.getBooks("dubai", "20", "1")?.observe(viewLifecycleOwner) {
 
+            when (it?.status) {
+                AppEnums.Status.LOADING -> {}
+                AppEnums.Status.SUCCESS -> {
+                    val ss = ""
+//                    binding.recordLayout.animationViewBig.gone()
+//                    binding.recordLayout.recordsRecyclerView.show()
+
+                }
+                AppEnums.Status.ERROR -> {
+                    // binding.recordLayout.animationViewBig.gone()
+                    val ss = ""
+
+                }
+                else -> {}
+            }
+        }
 
     }
 
@@ -53,9 +68,7 @@ class BooksFragment : Fragment() {
     }
 
     private fun showData(it: List<Items>?) {
-
     }
-
 
 
 }

@@ -8,12 +8,12 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface IService {
-
-    @GET("{section}/{days}.json")
+    @GET()
     suspend fun getBooks(
-        @Path("section") section: String,
-        @Path("days") days: String,
-        @Query("api-key") apiKey: String
+        @Query("q") q: String,
+        @Query("maxResults") maxResults: String,
+        @Query("startIndex") startIndex: String,
+        @Query("key") key: String
     ): Response<GeneralResponse>
 
 
