@@ -1,8 +1,8 @@
 package com.test.palmhrdemo.viewmodels
 
 import androidx.lifecycle.*
-import com.test.newsline.models.GeneralResponse
-import com.test.newsline.models.Resource
+import com.test.palmhrdemo.models.GeneralResponse
+import com.test.palmhrdemo.models.Resource
 import com.test.palmhrdemo.repositories.BooksRepository
 import com.test.palmhrdemo.utils.AppEnums
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -29,7 +29,7 @@ class BookViewModel(private val repository: BooksRepository) : ViewModel() {
 }
 
 
-class ArticleViewModelFactory(private val repository: BooksRepository) :
+class BooksViewModelFactory(private val repository: BooksRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(BookViewModel::class.java)) {

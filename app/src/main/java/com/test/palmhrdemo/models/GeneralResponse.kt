@@ -1,13 +1,12 @@
-package com.test.newsline.models
+package com.test.palmhrdemo.models
 
 import com.google.gson.annotations.SerializedName
 
 
 data class GeneralResponse(
 
-    @SerializedName("status") var status: String? = null,
-    @SerializedName("copyright") var copyright: String? = null,
-    @SerializedName("num_results") var numResults: Int? = null,
-    @SerializedName("results") var results: ArrayList<Article> = arrayListOf()
+    @SerializedName("kind") var kind: String? = null,
+    @SerializedName("totalItems") var totalItems: Int? = null,
+    @SerializedName("items") var items: ArrayList<Items> = arrayListOf()
 
 )

@@ -1,4 +1,4 @@
-package com.test.newsline.models
+package com.test.palmhrdemo.models
 
 class FilterObject {
     var section: String= ""

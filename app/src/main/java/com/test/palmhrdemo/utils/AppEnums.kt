@@ -1,7 +1,6 @@
 package com.test.palmhrdemo.utils
 
 class AppEnums {
-
     enum class Status {
         SUCCESS, ERROR, LOADING
     }
