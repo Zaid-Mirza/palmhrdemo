@@ -28,20 +28,20 @@ android {
                 minifyEnabled false
                 proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
                 buildConfigField "Integer", "ENVIRONMENT", "2"
-                buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/v1/volumes/\""
+                buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/\""
                 buildConfigField "String", "API_KEY", "\"AIzaSyBqxn_YfPuwvknrfsjgHN1FHX6e_Xw1IhI\""
 
             }
             qa {
                 debuggable true
                 buildConfigField "Integer", "ENVIRONMENT", "1"
-                buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/v1/volumes/\""
+                buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/\""
                 buildConfigField "String", "API_KEY", "\"AIzaSyBqxn_YfPuwvknrfsjgHN1FHX6e_Xw1IhI\""
             }
             debug {
                 debuggable true
                 buildConfigField "Integer", "ENVIRONMENT", "0"
-                buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/v1/volumes/\""
+                buildConfigField "String", "BASE_URL", "\"https://www.googleapis.com/books/\""
                 buildConfigField "String", "API_KEY", "\"AIzaSyBqxn_YfPuwvknrfsjgHN1FHX6e_Xw1IhI\""
 
             }
@@ -76,6 +76,7 @@ dependencies {
     //Fragments
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
 
+
     //Navigation
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
     //LifeCycle
@@ -106,7 +107,6 @@ dependencies {
 //    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     implementation "com.airbnb.android:lottie:5.2.0"
-
 
 
     // Unit Testing

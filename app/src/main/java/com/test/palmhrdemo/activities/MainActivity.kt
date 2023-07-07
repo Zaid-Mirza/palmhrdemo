@@ -7,6 +7,8 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.test.palmhrdemo.databinding.ActivityMainBinding
 
 
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
       //  val adapter = CategoriesAdapter(this)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragment.id) as NavHostFragment
+        navController = navHostFragment.findNavController()
 
 
     }

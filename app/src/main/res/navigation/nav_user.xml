@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_user.xml"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/booksFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="ae.rightfarm.fragments.HomeFragment"
-        android:label="HomeFragment" />
+        android:id="@+id/booksFragment"
+        android:name="com.test.palmhrdemo.fragments.BooksFragment"
+        android:label="BooksFragment" />
 </navigation>

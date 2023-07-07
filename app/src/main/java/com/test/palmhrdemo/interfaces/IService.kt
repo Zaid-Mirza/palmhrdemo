@@ -8,7 +8,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface IService {
-    @GET()
+    @GET("v1/volumes")
     suspend fun getBooks(
         @Query("q") q: String,
         @Query("maxResults") maxResults: String,
