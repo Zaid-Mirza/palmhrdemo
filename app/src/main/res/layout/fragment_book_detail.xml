@@ -27,10 +27,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_margin"
             android:layout_weight="1"
-            android:textColor="@color/main_teal"
+            android:text="@string/book_detail_txt"
+            android:textColor="@color/teal_700"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="@string/book_detail_txt" />
+            android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -116,11 +116,12 @@
 
             <View
                 android:id="@+id/divider"
-                android:layout_marginVertical="@dimen/small_margin"
-                app:layout_constraintTop_toBottomOf="@id/pageCount_materialTextView"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/light_grey"/>
+                android:layout_marginVertical="@dimen/small_margin"
+                android:background="@color/light_grey"
+                app:layout_constraintTop_toBottomOf="@id/pageCount_materialTextView" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/readingModes_materialTextView"
                 android:layout_width="wrap_content"
