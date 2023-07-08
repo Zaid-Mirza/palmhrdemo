@@ -2,6 +2,7 @@ package com.test.palmhrdemo.viewmodels
 
 import androidx.lifecycle.*
 import com.test.palmhrdemo.models.GeneralResponse
+import com.test.palmhrdemo.models.Items
 import com.test.palmhrdemo.models.Resource
 import com.test.palmhrdemo.repositories.BooksRepository
 import com.test.palmhrdemo.utils.AppEnums
@@ -10,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class BookViewModel(private val repository: BooksRepository) : ViewModel() {
     private val booksLiveData = MutableLiveData<Resource<GeneralResponse>?>()
+    private val detailLiveData = MutableLiveData<Resource<Items>?>()
 
     fun getBooks(
         q: String,
@@ -19,7 +21,6 @@ class BookViewModel(private val repository: BooksRepository) : ViewModel() {
 
 
         val handler = CoroutineExceptionHandler { data, exception ->
-            val ss = ""
             booksLiveData.postValue(Resource.error("", null, AppEnums.ErrorType.Service))
 
         }
@@ -33,6 +34,24 @@ class BookViewModel(private val repository: BooksRepository) : ViewModel() {
             }
         }
         return booksLiveData
+    }
+
+    fun getBookDetail(
+        selfLink: String
+    ): LiveData<Resource<Items>?> {
+
+
+        val handler = CoroutineExceptionHandler { data, exception ->
+            detailLiveData.postValue(Resource.error("", null, AppEnums.ErrorType.Service))
+        }
+        viewModelScope.launch(handler) {
+            repository.getBookDetail(
+                selfLink
+            ) {
+                detailLiveData.postValue(it)
+            }
+        }
+        return detailLiveData
     }
 }
 

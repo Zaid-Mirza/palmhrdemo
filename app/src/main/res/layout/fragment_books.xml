@@ -5,40 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/filter_linearLayout"
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_materialCardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/large_margin"
+        android:layout_marginTop="@dimen/extra_large_margin"
+        app:cardCornerRadius="@dimen/large_radius"
+        app:cardElevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/filter_materialTextView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/search_linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_margin"
-            android:src="@drawable/ic_filter"
-            android:textColor="@color/teal_700"
-            app:layout_constraintEnd_toStartOf="@id/filter_appCompatImageButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/teal_700" />
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:padding="@dimen/large_padding">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/filter_appCompatImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/large_margin"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/search_materialTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/searchHint_txt" />
 
-            android:src="@drawable/ic_filter"
-            app:tint="@color/teal_700"
+            <ImageView
+                android:id="@+id/search_imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end"
+                android:layout_marginHorizontal="@dimen/large_margin"
+                android:src="@drawable/ic_search"
+                tools:ignore="ContentDescription" />
 
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-            />
-
-
-    </LinearLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/clearFilter_materialTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/large_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:text="@string/clear_filter_txt"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_materialCardView" />
 
     <include
         android:id="@+id/recordLayout"
@@ -46,5 +61,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filter_linearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/clearFilter_materialTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

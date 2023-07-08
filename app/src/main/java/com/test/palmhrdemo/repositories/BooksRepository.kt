@@ -2,6 +2,7 @@ package com.test.palmhrdemo.repositories
 
 import com.test.palmhrdemo.managers.NetworkManager
 import com.test.palmhrdemo.models.GeneralResponse
+import com.test.palmhrdemo.models.Items
 import com.test.palmhrdemo.models.Resource
 import com.test.palmhrdemo.utils.AppEnums
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,24 @@ class BooksRepository {
         listener: suspend (Resource<GeneralResponse>) -> Unit
     ) {
         withContext(Dispatchers.IO) {
-            val response = NetworkManager.getBooks(q, maxResults,startIndex)
+            val response = NetworkManager.getBooks(q, maxResults, startIndex)
+            if (response?.isSuccessful == true) {
+                response.body()?.let {
+                    listener(Resource.success(it))
+                }
+            } else {
+                listener(Resource.error(response?.message(), null, AppEnums.ErrorType.Service))
+            }
+        }
+
+    }
+
+    suspend fun getBookDetail(
+        selfLink: String,
+        listener: suspend (Resource<Items>) -> Unit
+    ) {
+        withContext(Dispatchers.IO) {
+            val response = NetworkManager.getBookDetail(selfLink)
             if (response?.isSuccessful == true) {
                 response.body()?.let {
                     listener(Resource.success(it))

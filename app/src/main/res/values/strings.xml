@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">palmhrDemo</string>
+    <string name="searchHint_txt">Search by title,author, ISBN, publisher…</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="authors_txt">Authors</string>
+    <string name="reading_modes_txt">Reading Modes</string>
+    <string name="text_txt">Text</string>
+    <string name="image_txt">Image</string>
+    <string name="none_txt">None</string>
+    <string name="book_detail_txt">Book Detail</string>
+    <string name="apply_txt">Apply</string>
+    <string name="cancel_txt">Cancel</string>
+    <string name="query_txt">Query</string>
+    <string name="author_txt">Author</string>
+    <string name="isbn_txt">ISBN</string>
+    <string name="publisher_txt">Publisher</string>
+    <string name="clear_filter_txt">Clear Filter</string>
 </resources>

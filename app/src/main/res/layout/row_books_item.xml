@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/extra_large_margin"
+    android:layout_marginVertical="@dimen/medium_margin"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/xx_large_margin"
+    app:cardElevation="@dimen/small_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/medium_margin">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bookImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_materialTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/none_txt"
+            android:textColor="@color/main_teal"
+            android:textSize="@dimen/small_txt_size"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/bookImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="News Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subtitle_materialTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/none_txt"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/bookImage"
+            app:layout_constraintTop_toBottomOf="@id/title_materialTextView"
+            tools:text="News Title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/author_materialTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/none_txt"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/bookImage"
+            app:layout_constraintTop_toBottomOf="@id/subtitle_materialTextView"
+            tools:text="By Zaid Mirza" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/publishedDate_materialTextView"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:text="@string/none_txt"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="@dimen/small_margin"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/author_materialTextView"
+            tools:text="10-23-2022" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

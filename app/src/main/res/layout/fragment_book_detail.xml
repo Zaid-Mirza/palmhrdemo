@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/toolbar_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/trans_white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/medium_padding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backArrow_appCompatImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_back_arrow" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_materialTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_weight="1"
+            android:textColor="@color/main_teal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/book_detail_txt" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/book_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_linearLayout"
+        app:layout_constraintVertical_weight="2"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/extra_large_margin"
+        android:layout_marginVertical="@dimen/medium_margin"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/xx_large_margin"
+        app:cardElevation="@dimen/small_margin"
+        app:layout_constraintTop_toBottomOf="@id/book_imageView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/medium_margin">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/authors_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/authors_txt"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/authorsNames_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/none_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/authors_materialTextView"
+                tools:text="Zaid Mirza, Mirza Zaid" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/publishedMessage_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/teal_700"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constrainedWidth="true"
+
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/authorsNames_materialTextView"
+                tools:text="Published Title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pageCount_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/publishedMessage_materialTextView"
+                tools:text="700 Pages" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_marginVertical="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/pageCount_materialTextView"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_grey"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/readingModes_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/reading_modes_txt"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/text_txt"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/readingModes_materialTextView"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/text_appCompatImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check"
+                app:layout_constraintStart_toEndOf="@id/text_materialTextView"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/image_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/image_txt"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/text_appCompatImageView"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_appCompatImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/image_materialTextView"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                tools:src="@drawable/ic_cross" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/readOnWeb_materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/teal_700"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/readingModes_materialTextView"
+                tools:text="Read On Web:" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

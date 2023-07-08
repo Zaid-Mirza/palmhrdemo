@@ -8,4 +8,7 @@
     <color name="amber_teal">#A6E8ED</color>
     <color name="main_teal">#20C5D3</color>
     <color name="off_white">#FAFAFA</color>
+    <color name="trans_white">#CCFFFFFF</color>
+    <color name="light_grey">#E5E5E5</color>
+    <color name="medium_grey">#C7C7C7</color>
 </resources>
