@@ -16,4 +16,8 @@
     <string name="isbn_txt">ISBN</string>
     <string name="publisher_txt">Publisher</string>
     <string name="clear_filter_txt">Clear Filter</string>
+    <string name="publishedBy_txt">Published By</string>
+    <string name="on_txt">on</string>
+    <string name="totalPages_txt">Total Pages</string>
+    <string name="readOnWeb_txt">Read on Web</string>
 </resources>

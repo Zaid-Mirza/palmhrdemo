@@ -88,12 +88,13 @@ class BookDetailFragment : Fragment() {
         }
         binding.apply {
             publishedMessageMaterialTextView.text =
-                String.format("%s %s %s %s", "Published By", item?.volumeInfo?.publisher,"on", item?.volumeInfo?.publishedDate )
+                String.format("%s %s %s %s", getString(R.string.publishedBy_txt), item?.volumeInfo?.publisher,getString(
+                                    R.string.on_txt), item?.volumeInfo?.publishedDate )
             authorsNamesMaterialTextView.text = item?.volumeInfo?.authors?.joinToString(" | ") ?: getString(R.string.none_txt)
-            pageCountMaterialTextView.text = String.format("%s %s","Total Pages",item?.volumeInfo?.pageCount.toString())
+            pageCountMaterialTextView.text = String.format("%s %s",getString(R.string.totalPages_txt),item?.volumeInfo?.pageCount.toString())
             textAppCompatImageView.setImageResource(if(item?.volumeInfo?.readingModes?.text == true) R.drawable.ic_check else R.drawable.ic_cross)
             imageAppCompatImageView.setImageResource(if(item?.volumeInfo?.readingModes?.image == true) R.drawable.ic_check else R.drawable.ic_cross)
-            readOnWebMaterialTextView.text = String.format("%s %s","Read on Web",item?.accessInfo?.webReaderLink)
+            readOnWebMaterialTextView.text = String.format("%s %s",getString(R.string.readOnWeb_txt),item?.accessInfo?.webReaderLink)
             Linkify.addLinks(readOnWebMaterialTextView,Linkify.WEB_URLS)
         }
 
