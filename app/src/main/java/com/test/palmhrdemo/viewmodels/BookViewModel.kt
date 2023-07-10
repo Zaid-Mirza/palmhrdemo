@@ -16,10 +16,13 @@ class BookViewModel(private val repository: BooksRepository) : ViewModel() {
     fun getBooks(
         q: String,
         maxResults: String,
-        startIndex: String
+        startIndex: String, isRemove: Boolean = false
     ): LiveData<Resource<GeneralResponse>?> {
 
-
+        if (isRemove) {
+            booksLiveData.postValue(null)
+            return booksLiveData
+        }
         val handler = CoroutineExceptionHandler { data, exception ->
             booksLiveData.postValue(Resource.error("", null, AppEnums.ErrorType.Service))
 

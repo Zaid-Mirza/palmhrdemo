@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,9 @@ import com.test.palmhrdemo.R
 import com.test.palmhrdemo.adapters.BooksAdapter
 import com.test.palmhrdemo.databinding.FragmentBooksBinding
 import com.test.palmhrdemo.models.FilterObject
+import com.test.palmhrdemo.models.GeneralResponse
 import com.test.palmhrdemo.models.Items
+import com.test.palmhrdemo.models.Resource
 import com.test.palmhrdemo.repositories.BooksRepository
 import com.test.palmhrdemo.utils.AppEnums
 import com.test.palmhrdemo.utils.Constants
@@ -30,36 +33,10 @@ import com.test.palmhrdemo.viewmodels.SharedViewModel
 
 class BooksFragment : Fragment() {
     private lateinit var binding: FragmentBooksBinding
+    private  lateinit  var booksObserver: Observer<Resource<GeneralResponse>?>
     private lateinit var contentView: View
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private var booksViewModel: BookViewModel? = null
-
-
-    private val textWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-
-        override fun afterTextChanged(it: Editable?) {
-
-            if (it != null && it.length > 4) {
-
-                //getSuggestions(it.toString())
-                searchBook(it.toString())
-            } else {
-                if (it.isNullOrEmpty()) {
-                    searchBook("dubai")
-                }
-//                    suggestions.clear()
-//                    showSuggestions()
-            }
-        }
-
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,19 +55,41 @@ class BooksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
         if (!::contentView.isInitialized) {
             binding = FragmentBooksBinding.inflate(inflater, container, false)
             contentView = binding.root
+            setupObservers()
             initViews()
         }
+      setupObservers()
 
         return contentView;
     }
 
-    private fun initViews() {
-        binding.clearFilterMaterialTextView.setOnClickListener {
-            sharedViewModel.setSelectedFilterData(null)
+    private fun setupObservers() {
+        booksObserver = Observer {
+
+            when (it?.status) {
+                AppEnums.Status.LOADING -> {
+
+                }
+                AppEnums.Status.SUCCESS -> {
+                    booksViewModel?.getBooks("","","",true)?.removeObserver(booksObserver)
+                    showData(it.data?.items)
+                    binding.recordLayout.animationViewBig.gone()
+                    binding.recordLayout.recordsRecyclerView.show()
+
+                }
+                AppEnums.Status.ERROR -> {
+                    binding.recordLayout.animationViewBig.gone()
+                    val ss = ""
+
+                }
+                else -> {}
+            }
         }
+
         sharedViewModel.getSelectedFilterData().observe(viewLifecycleOwner) {
             if (it != null) {
 
@@ -104,6 +103,13 @@ class BooksFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun initViews() {
+        binding.clearFilterMaterialTextView.setOnClickListener {
+            sharedViewModel.setSelectedFilterData(null)
+        }
+
         binding.searchMaterialCardView.setOnClickListener {
             openFilter()
         }
@@ -130,29 +136,10 @@ class BooksFragment : Fragment() {
     private fun searchBook(q: String, changeTitle: Boolean = false) {
         binding.recordLayout.animationViewBig.show()
         binding.recordLayout.recordsRecyclerView.gone()
+        binding.recordLayout.emptyTextView.gone()
         if (changeTitle)
             changeSearchTitle(q)
-        booksViewModel?.getBooks(q, Constants.MAX_RESULTS, "1")?.observe(viewLifecycleOwner) {
-
-            when (it?.status) {
-                AppEnums.Status.LOADING -> {
-
-                }
-                AppEnums.Status.SUCCESS -> {
-                    val ss = ""
-                    showData(it.data?.items)
-                    binding.recordLayout.animationViewBig.gone()
-                    binding.recordLayout.recordsRecyclerView.show()
-
-                }
-                AppEnums.Status.ERROR -> {
-                    binding.recordLayout.animationViewBig.gone()
-                    val ss = ""
-
-                }
-                else -> {}
-            }
-        }
+        booksViewModel?.getBooks(q, Constants.MAX_RESULTS, "1")?.observe(viewLifecycleOwner,booksObserver)
     }
 
     private fun handleFilters(filterObject: FilterObject?) {
@@ -166,7 +153,7 @@ class BooksFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             recordsRecyclerView.adapter = BooksAdapter(it ?: emptyList(), requireActivity()) {
                 if (it?.selfLink.isNullOrBlank())
-                    Toast.makeText(requireContext(), "Details not available", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), getString(R.string.details_notAvailable_txt), Toast.LENGTH_SHORT)
                         .show()
                 else
                     it?.selfLink?.let {
@@ -180,6 +167,7 @@ class BooksFragment : Fragment() {
             }
             emptyTextView.visibility =
                 if (!it.isNullOrEmpty()) View.GONE else View.VISIBLE
+            emptyTextView.setText(getString(R.string.noResultFound_msg))
         }
 
     }

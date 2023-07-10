@@ -68,8 +68,6 @@ class FilterFragment : BottomSheetDialogFragment() {
                 objects.isbn = isbnTextField.text.toString()
                 objects.publisher = publisherTextField.text.toString()
             }
-
-
             sharedViewModel.setSelectedFilterData(objects)
             dismissAllowingStateLoss()
         }

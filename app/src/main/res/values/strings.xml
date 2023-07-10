@@ -20,4 +20,6 @@
     <string name="on_txt">on</string>
     <string name="totalPages_txt">Total Pages</string>
     <string name="readOnWeb_txt">Read on Web</string>
+    <string name="details_notAvailable_txt">Details not available</string>
+    <string name="noResultFound_msg">No books found against specified search</string>
 </resources>
